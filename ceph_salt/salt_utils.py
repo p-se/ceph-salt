@@ -217,7 +217,7 @@ class PillarManager:
             cls._save_yaml({'ceph-salt': {}}, cls.PILLAR_FILE)
 
     @staticmethod
-    def _get_dict_value(dict_, key_path):
+    def _get_dict_value(dict_, key_path: str):
         path = key_path.split(":")
         _dict = dict_
         while True:

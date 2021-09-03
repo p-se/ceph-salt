@@ -396,7 +396,7 @@ CEPH_SALT_OPTIONS = {
         'options': {
             'registry_auth': {
                 'type': 'group',
-                'help': "Registry autentications",
+                'help': "Registry authentications",
                 'options': {
                     'username': {
                         'help': 'Username of account to login to on registry',
