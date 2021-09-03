@@ -475,6 +475,36 @@ add location=172.17.0.1:5000/docker.io prefix=docker.io insecure=false
                 'required': True,
                 'handler': PillarHandler('ceph-salt:container:images:ceph')
             },
+            'monitoring_images': {
+                'type': 'group',
+                'help': 'Monitoring container image paths',
+                'options': {
+                    'grafana': {
+                        'help': 'Path of the Grafana container image',
+                        'default_text': '(remote) default image',
+                        'handler': PillarHandler('ceph-salt:container:images:grafana'),
+                        'required': False,
+                    },
+                    'prometheus': {
+                        'help': 'Path of the Prometheus container image',
+                        'default_text': '(remote) default image',
+                        'handler': PillarHandler('ceph-salt:container:images:prometheus'),
+                        'required': False,
+                    },
+                    'node_exporter': {
+                        'help': 'Path of the Node-Exporter container image',
+                        'default_text': '(remote) default image',
+                        'handler': PillarHandler('ceph-salt:container:images:node_exporter'),
+                        'required': False,
+                    },
+                    'alertmanager': {
+                        'help': 'Path of the Alertmanager container image',
+                        'default_text': '(remote) default image',
+                        'handler': PillarHandler('ceph-salt:container:images:alertmanager'),
+                        'required': False,
+                    },
+                }
+            },
             'dashboard': {
                 'type': 'group',
                 'help': 'Dashboard settings',

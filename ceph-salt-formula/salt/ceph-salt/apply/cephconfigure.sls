@@ -23,6 +23,42 @@ copy ceph.conf and keyring from admin node:
 
 {% if grains['id'] == admin_minion %}
 
+{{ macros.begin_stage('Configuring custom monitoring container image paths') }}
+
+{% set node_exporter_image = pillar.get('ceph-salt:container:images:node_exporter', '') %}
+{% if node_exporter_image != '' %}
+configure node_exporter image path:
+  cmd.run:
+    - name: ceph config set mgr mgr/cephadm/container_image_node_exporter {{node_exporter_image}}
+    - failhard: True
+{% endif %}
+
+{% set prometheus_image = pillar.get('ceph-salt:container:images:prometheus', '') %}
+{% if prometheus_image != '' %}
+configure prometheus image path:
+  cmd.run:
+    - name: ceph config set mgr mgr/cephadm/container_image_node_exporter {{prometheus_image}}
+    - failhard: True
+{% endif %}
+
+{% set grafana_image = pillar.get('ceph-salt:container:images:grafana', '') %}
+{% if grafana_image != '' %}
+configure grafana image path:
+  cmd.run:
+    - name: ceph config set mgr mgr/cephadm/container_image_node_exporter {{grafana_image}}
+    - failhard: True
+{% endif %}
+
+{% set alertmanager_image = pillar.get('ceph-salt:container:images:alertmanager', '') %}
+{% if alertmanager_image != '' %}
+configure alertmanager container image path:
+  cmd.run:
+    - name: ceph config set mgr mgr/cephadm/container_image_node_exporter {{alertmanager_image}}
+    - failhard: True
+{% endif %}
+
+{{ macros.end_stage('Configuring custom monitoring container image paths') }}
+
 {{ macros.begin_stage('Ensure cephadm MGR module is enabled') }}
 
 enable cephadm mgr module:
